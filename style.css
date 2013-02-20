@@ -24,7 +24,7 @@ footer.debug {
 }
 footer.debug input {
   position: fixed;
-  top: -999px;
+  bottom: -50px;
 }
 footer.debug span.cursor {
   animation: blink 1.5s infinite linear;
