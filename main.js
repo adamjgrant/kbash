@@ -223,22 +223,7 @@ Array.prototype.remove = function(from, to) {
          getResponse(request);
       }
 
-      // SAMPLE KBASH EXTENSIONS
-      // =======================
-
-      kbash.say = function(args, flags, opts, props) {
-        if (props.empty == true) { console.kbash('Please supply an argument') }
-        else {
-          var msg = ''
-          if (args.have('hello')) {
-            msg = (flags.have('v') ? 'Hello, it is very good to see you this fine day' : 'Hi')
-            if (opts.have('polite')) msg = msg + ('...good sir/madaam')
-            if (opts.have('rude')) msg = msg + ('...you big dumb jerk')
-          }
-          else { msg = ('I don\'t know how to say that. Ask me to say "hello"') }
-          console.kbash(msg)
-        }
-      }
+      // USER HELP
 
       kbash.help = function(args, flags, opts, props) {
         msg = flags.have('v') ? 'try "say hello [-v] [--polite] [--rude]"' : 'Try "say hello" (or "help -v" for more options)'
