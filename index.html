@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+	  <link rel="stylesheet" href="style.css" />
+	  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap-combined.min.css" rel="stylesheet">
+	</head>
+  <body class="container">
+
+    <h1>Kbash</h1>
+    <p class="lead">An extendible JavaScript function caller using Unix syntax</p>
+    <strong>Try the shell at the very bottom. Type "help" to see what you can do.</strong>
+    <p>To be included in <a href="http://www.getkickstrap.com">Kickstrap 2.0</a></p>
+    <p><a href="https://github.com/ajkochanowicz/kbash">Github</a> 
+      | <a href="http://twitter.com/kickstrap">Twitter</a>
+      | <a href="http://twitter.com/yourwebsitesux">Adam Kochanowicz</a></p>
+
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#about">About</a></li>
+      <li><a href="#extend">Extending</a></li>
+      <li><a href="#options">Other options</a></li>
+    </ol>
+    <hr>
+    <h3 id="about">About</h3>
+    <p class="lead">Command-line JavaScript</p>
+    <p>Kbash is the command-line tool in the future Kickstrap 2.0. However, it can be used with jQuery alone.</p>
+    <p>The idea is to provide unix-style debugging which is library-specific.</p>
+    <p>For example, a command like this...</p>
+    <pre>say -v hello --rude --polite</pre>
+    <p>...turns into this object...</p>
+<pre>
+{
+  rootCommand: 'say',
+  args: ['hello'],
+  flags: ['v'],
+  opts: ['rude', 'polite']
+}</pre>
+    <p>...and gets passed to the <code>kbash.say()</code> function, thus displaying this:</p>
+    <pre>Hello. It is very good to see you this fine day...my good sir/madaam...you big dumb jerk.</pre>
+    <h3 id="extend">Extending</h3>
+    <p>And here is all the developer needed to write to extend the shell.</p>
+<pre class="prettyprint">kbash.say = function(args, flags, opts, props) {
+  if (props.empty == true) { console.kbash('Please supply an argument') }
+  else {
+    var msg = ''
+    if (args.have('hello')) {
+      msg = (flags.have('v') ? 'Hello, it is very good to see you this fine day' : 'Hi')
+      if (opts.have('polite')) msg = msg + ('...good sir/madaam')
+      if (opts.have('rude')) msg = msg + ('...you big dumb jerk')
+    }
+    else { msg = ('I don\'t know how to say that. Ask me to say "hello"') }
+    console.kbash(msg)
+  }
+}</pre>
+    <p><strong>Why is this good?</strong> At the end of the day, commands are routed to plain old JavaScript. This means you can build all kinds of awesome CLI tools that do pretty much anything you can do with JavaScript.</p>
+    <h3>Other Options</h3>
+    <p>Like a real unix shell, each command is stored in an array and can be retrieved by hitting the up or down arrow keys.</p>
+    <p>This is all still experimental and has its quirks. If you like this project, consider helping to get this to 100% by contributing to <a href="https://github.com/ajkochanowicz/kbash">the Github repo!</a></p>
+    <footer style="height: 100px" />
+
+  	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+  	<script src="main.js"></script>
+  </body>
+</html>

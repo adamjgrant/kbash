@@ -1,0 +1,63 @@
+@-webkit-keyframes blink {
+  0% {
+    color: black;
+  }
+  10% {
+    color: #fdd726;
+  }
+  60% {
+    color: #fdd726;
+  }
+  70% {
+    color: black;
+  }
+  100% {
+    color: black;
+  }
+}
+footer.debug {
+  position: fixed;
+  bottom: 0;
+  left: 20px;
+  right: 20px;
+  margin-left: -10px;
+}
+footer.debug input {
+  position: fixed;
+  top: -999px;
+}
+footer.debug span.cursor {
+  animation: blink 1.5s infinite linear;
+  -webkit-animation: blink 1.5s infinite linear;
+}
+footer.debug nav {
+  transition: 0.2s all;
+  padding: 0 5px;
+  background-color: #1e1c17;
+  min-height: 25px;
+  color: #fdd726;
+  font-family: monospace;
+  cursor: text;
+  outline: 0;
+  line-height: 25px;
+  font-size: 12.5px;
+  width: 100%;
+  height: 25px;
+  border: 0px;
+}
+footer.debug nav:hover {
+  background-color: #000000;
+}
+footer.debug nav:active {
+  background-color: #494438;
+}
+footer.debug nav.console {
+  display: none;
+  height: auto;
+  max-height: 200px;
+  overflow-y: scroll;
+}
+footer.debug nav.console p {
+  margin: 0;
+  line-height: 20.833333333333336px;
+}
