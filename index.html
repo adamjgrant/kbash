@@ -24,6 +24,8 @@
     <hr>
     <h3 id="demo">Demo it</h3>
     <p class="lead">Look for the black bar at the bottom of this screen.</p>
+    <h4>Tecate</h4>
+    <p>Run either <code>check</code> or <code>check -c</code> (c is for "count") to have tecate check the html errors on this page.</p>
     <h4>Color Me</h4>
     <img style="margin: 15px auto; width: 381px; display: block;" src="img/colorme.png">
     <p>While kbash extensions can be as complex as any JS library could be, colorme is shows how basic they can be. At one line of code, Color Me lets you change the background of this page with a simple syntax.</p>
@@ -93,7 +95,14 @@ Hello. It is very good to see you this fine day...you big dumb jerk.
 }</pre>
     <p><strong>Why is this good?</strong> At the end of the day, commands are routed to plain old JavaScript. This means you can build all kinds of awesome CLI tools that do pretty much anything you can do with JavaScript.</p>
     <h3>Other Options</h3>
+    <h4>History</h4>
     <p>Like a real unix shell, each command is stored in an array and can be retrieved by hitting the up or down arrow keys.</p>
+    <h4>Forgiveness</h4>
+    <p>You can also mix up flags as you would in Unix. So all of the following would be read the same:</p>
+<pre>say hello -v -a -l</pre>
+<pre>say hello -val</pre>
+<pre>say -v hello -al</pre>
+<pre>say -a -l hello -v</pre>
     <p>This is all still experimental and has its quirks. If you like this project, consider helping to get this to 100% by contributing to <a href="https://github.com/ajkochanowicz/kbash">the Github repo!</a></p>
     <footer style="height: 100px" />
 
@@ -101,5 +110,7 @@ Hello. It is very good to see you this fine day...you big dumb jerk.
   	<script src="main.js"></script>
   	<script src="extensions/say.js"></script>
   	<script src="extensions/colorme.js"></script>
+  	<script src="extensions/analyzer.js"></script>
+    <script src="extensions/tecate.js"></script>
   </body>
 </html>

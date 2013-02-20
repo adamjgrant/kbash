@@ -230,8 +230,6 @@ Array.prototype.remove = function(from, to) {
         console.kbash(msg)
       }
 
-
-
 /*
 When people see some things as beautiful,
 other things become ugly.
