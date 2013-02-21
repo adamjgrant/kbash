@@ -125,6 +125,10 @@ Array.prototype.remove = function(from, to) {
           commandSpot++
           setInput()
         }
+        if (e.keyCode == 27) { // Escape
+          e.preventDefault();
+          $('a').focus();
+        }
       });
 
       // GETTERS
@@ -226,6 +230,15 @@ Array.prototype.remove = function(from, to) {
       // USER HELP
 
       kbash.help = function(args, flags, opts, props) {
+        var objs = Object.getOwnPropertyNames(kbash)
+        console.kbash('<span class="white">AVAILABLE COMMANDS</span>')
+        console.kbash('<span class="white">==================</span>')
+        for (var i = 0; i < objs.length; i++ ) {
+          console.kbash(objs[i])
+        }
+        console.kbash('&nbsp;')
+        console.kbash('<span class="white">DEMO</span>')
+        console.kbash('<span class="white">====</span>')
         msg = flags.have('v') ? 'try "say hello [-v] [--polite] [--rude]"' : 'Try "say hello" (or "help -v" for more options)'
         console.kbash(msg)
       }

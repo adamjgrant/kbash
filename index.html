@@ -4,38 +4,42 @@
 	  <link rel="stylesheet" href="style.css" />
 	  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap-combined.min.css" rel="stylesheet">
 	</head>
-  <body class="container">
-
-    <h1>Kbash</h1>
-    <p class="lead">The extendible Unix shell for the web</p>
-    <strong>Try the shell at the very bottom. Type "help" to see what you can do.</strong>
-    <p>To be included in <a href="http://www.getkickstrap.com">Kickstrap 2.0</a></p>
-    <p><a href="https://github.com/ajkochanowicz/kbash">Github</a> 
-      | <a href="http://twitter.com/kickstrap">Twitter</a>
-      | <a href="http://twitter.com/yourwebsitesux">Adam Kochanowicz</a></p>
-
-    <h2>Contents</h2>
-    <ol> 
-      <li><a href="#demo">Demo it</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#extend">Extending</a></li>
-      <li><a href="#options">Other options</a></li>
-    </ol>
-    <span attr="this is on purpose></span>
-    <hr>
-    <h3 id="demo">Demo it</h3>
-    <p class="lead">Look for the black bar at the bottom of this screen.</p>
-    <h4>Tecate</h4>
-    <p>Run either <code>check</code> or <code>check -c</code> (c is for "count") to have tecate check the html errors on this page.</p>
-    <h4>Color Me</h4>
-    <img style="margin: 15px auto; width: 381px; display: block;" src="img/colorme.png">
-    <p>While kbash extensions can be as complex as any JS library could be, colorme is shows how basic they can be. At one line of code, Color Me lets you change the background of this page with a simple syntax.</p>
+  <body>
+    <div class="container" style="padding-top: 25px">
+      <div class="hero-unit">
+        <img style="width: 500px; float: right;" src="img/say.png">
+        <h1>Kbash</h1>
+        <p class="lead">The extendible Unix shell for the web</p>
+        <a href="https://github.com/ajkochanowicz/kbash" class="btn btn-primary btn-large">On Github</a>
+        <a class="btn">Download</a>
+      </div>
+      <div class="row">
+        <section class="span3">
+          <ul class="nav nav-tabs nav-stacked">
+            <li><a href="#demo">Demo it</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#extend">Extending</a></li>
+            <li><a href="#options">Other options</a></li>
+          </ul>
+          <p>To be included in <a href="http://www.getkickstrap.com">Kickstrap 2.0</a></p>
+          <p><a href="https://github.com/ajkochanowicz/kbash">Github</a> 
+            | <a href="http://twitter.com/kickstrap">Twitter</a>
+            | <a href="http://twitter.com/yourwebsitesux">Adam Kochanowicz</a></p>
+        </section>
+        <section class="span9">
+          <h1 id="demo">Demo it</h1>
+          <p class="lead">Look for the black bar at the bottom of this screen.</p>
+          <p>Keep in mind, these are just some demos I created in a couple minutes. <strong>Kbash is extendible.</strong>  If you can write a JavaScript function, you can extend kbash to do anything you could do in JavaScript.</p> 
+          <p>(<a href="#extend">See Extending to learn more</a>)</p>
+          <h3>Color Me</h3>
+          <img style="margin: 15px auto; width: 381px; display: block;" src="img/colorme.png">
+          <p>While kbash extensions can be as complex as any JS library could be, colorme is shows how basic they can be. At one line of code, Color Me lets you change the background of this page with a simple syntax.</p>
 <pre>colorme [color]</pre>
-    <p>For example,</p>
+          <p>For example,</p>
 <pre>colorme orange</pre>
-    <p>Writing this extension was pretty easy too.</p>
+          <p>Writing this extension was pretty easy too.</p>
 <pre>kbash.colorme = function (args, flags, opts, props) { $('body').css('background-color', args[0]) }</pre>
-    <p>Then, it was just included after <code>main.js</code>
+          <p>Then, it was just included after <code>main.js</code>
 <pre>  ...  
   &lt;script src="http://code.jquery.com/jquery-1.9.1.min.js"&gt;&lt;/script&gt;
   &lt;script src="main.js"&gt;&lt;/script&gt;
@@ -43,33 +47,33 @@
   <em>&lt;script src="extensions/colorme.js"&gt;&lt;/script&gt;</em>
 &lt;/body>
 </pre>
-    <h4>Say</h4>
-    <img style="margin: 15px auto; width: 500px; display: block;" src="img/say.png">
-    <p class="lead">Test kbash's organization of flags, options, and arguments.</p>
-    <p>Say is another "hello world" kind of app, but demonstrates how shell extensions can interface with unix flags, options, and arguments.</p>
-    <p>Try this out by just typing "say hello"</p>
+          <h3>Say</h3>
+          <img style="margin: 15px auto; width: 500px; display: block;" src="img/say.png">
+          <p class="lead">Test kbash's organization of flags, options, and arguments.</p>
+          <p>Say is another "hello world" kind of app, but demonstrates how shell extensions can interface with unix flags, options, and arguments.</p>
+          <p>Try this out by just typing "say hello"</p>
 <pre>&gt; say hello
 Hi
 </pre>
-    <p>Add the tag <code>-v</code> for "verbose"</p>
+          <p>Add the tag <code>-v</code> for "verbose"</p>
 <pre>&gt; say hello -v
 Hello. It is very good to see you this fine day.
 </pre>
-    <p>Add the options <code>--rude</code> or <code>--polite</code> (or both) to modify the message</p>
+          <p>Add the options <code>--rude</code> or <code>--polite</code> (or both) to modify the message</p>
 <pre>&gt; say hello -v --rude
 Hello. It is very good to see you this fine day...you big dumb jerk.
 </pre>      
-    <p>Notice how the flags and options can be rearranged.<p>
+          <p>Notice how the flags and options can be rearranged.<p>
 <pre>&gt; say --rude -v hello
 Hello. It is very good to see you this fine day...you big dumb jerk.
 </pre>  
-    <h3 id="about">About</h3>
-    <p class="lead">Command-line JavaScript</p>
-    <p>Kbash is the command-line tool in the future Kickstrap 2.0. However, it can be used with jQuery alone.</p>
-    <p>The idea is to provide unix-style debugging which is library-specific.</p>
-    <p>For example, a command like this...</p>
-    <pre>say -v hello --rude --polite</pre>
-    <p>...turns into this object...</p>
+          <h1 id="about">About</h1>
+          <p class="lead">Command-line JavaScript</p>
+          <p>Kbash is the command-line tool in the future Kickstrap 2.0. However, it can be used with jQuery alone.</p>
+          <p>The idea is to provide unix-style debugging which is library-specific.</p>
+          <p>For example, a command like this...</p>
+<pre>say -v hello --rude --polite</pre>
+          <p>...turns into this object...</p>
 <pre>
 {
   rootCommand: 'say',
@@ -77,10 +81,10 @@ Hello. It is very good to see you this fine day...you big dumb jerk.
   flags: ['v'],
   opts: ['rude', 'polite']
 }</pre>
-    <p>...and gets passed to the <code>kbash.say()</code> function, thus displaying this:</p>
-    <pre>Hello. It is very good to see you this fine day...my good sir/madaam...you big dumb jerk.</pre>
-    <h3 id="extend">Extending</h3>
-    <p>And here is all the developer needed to write to extend the shell.</p>
+          <p>...and gets passed to the <code>kbash.say()</code> function, thus displaying this:</p>
+<pre>Hello. It is very good to see you this fine day...my good sir/madaam...you big dumb jerk.</pre>
+          <h1 id="extend">Extending</h1>
+          <p>And here is all the developer needed to write to extend the shell.</p>
 <pre class="prettyprint">kbash.say = function(args, flags, opts, props) {
   if (props.empty == true) { console.kbash('Please supply an argument') }
   else {
@@ -94,24 +98,26 @@ Hello. It is very good to see you this fine day...you big dumb jerk.
     console.kbash(msg)
   }
 }</pre>
-    <p><strong>Why is this good?</strong> At the end of the day, commands are routed to plain old JavaScript. This means you can build all kinds of awesome CLI tools that do pretty much anything you can do with JavaScript.</p>
-    <h3>Other Options</h3>
-    <h4>History</h4>
-    <p>Like a real unix shell, each command is stored in an array and can be retrieved by hitting the up or down arrow keys.</p>
-    <h4>Forgiveness</h4>
-    <p>You can also mix up flags as you would in Unix. So all of the following would be read the same:</p>
+          <p><strong>Why is this good?</strong> At the end of the day, commands are routed to plain old JavaScript. This means you can build all kinds of awesome CLI tools that do pretty much anything you can do with JavaScript.</p>
+          <h1>Other Options</h1>
+          <h3>History</h3>
+          <p>Like a real unix shell, each command is stored in an array and can be retrieved by hitting the up or down arrow keys.</p>
+          <h3>Forgiveness</h3>
+          <p>You can also mix up flags as you would in Unix. So all of the following would be read the same:</p>
 <pre>say hello -v -a -l</pre>
 <pre>say hello -val</pre>
 <pre>say -v hello -al</pre>
 <pre>say -a -l hello -v</pre>
-    <p>This is all still experimental and has its quirks. If you like this project, consider helping to get this to 100% by contributing to <a href="https://github.com/ajkochanowicz/kbash">the Github repo!</a></p>
-    <footer style="height: 100px" />
+          <p>This is all still experimental and has its quirks. If you like this project, consider helping to get this to 100% by contributing to <a href="https://github.com/ajkochanowicz/kbash">the Github repo!</a></p>
+        </section>
+      </div>
+      <footer style="height: 100px" />
 
-  	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-  	<script src="main.js"></script>
-  	<script src="extensions/say.js"></script>
-  	<script src="extensions/colorme.js"></script>
-  	<script src="extensions/analyzer.js"></script>
-    <script src="extensions/tecate.js"></script>
+    	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    	<script src="main.js"></script>
+    	<script src="extensions/say.js"></script>
+    	<script src="extensions/colorme.js"></script>
+      <script src="extensions/tecate.js"></script>
+    </div>
   </body>
 </html>

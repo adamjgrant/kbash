@@ -13,6 +13,11 @@
   100%   { color: black; }
 }
 
+span { 
+  &.white { color: white; }
+  &.red { color: @red; }
+  &.green { color: green; }
+}
 footer.debug {
   position: fixed;
   bottom: 0;
@@ -21,7 +26,9 @@ footer.debug {
   margin-left: -10px;
   input { 
     position: fixed;
-    top: -50px;
+    z-index: -10;
+    outline: 0;
+    opacity: 0;
   }
   span.cursor {
     animation: blink 1.5s infinite linear;
