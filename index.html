@@ -3,6 +3,9 @@
   <head>
 	  <link rel="stylesheet" href="style.css" />
 	  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap-combined.min.css" rel="stylesheet">
+    <style>
+      hr { margin: 50px 0; }
+    </style>
 	</head>
   <body>
     <div class="container" style="padding-top: 25px">
@@ -11,11 +14,12 @@
         <h1>Kbash</h1>
         <p class="lead">The extendible Unix shell for the web</p>
         <a href="https://github.com/ajkochanowicz/kbash" class="btn btn-primary btn-large">On Github</a>
-        <a href="https://s3.amazonaws.com/kickstrap/kbash.zip" class="btn">Download</a>
+        <a href="https://s3.amazonaws.com/kickstrap/kbash.zip" class="btn btn-large">Download</a>
       </div>
       <div class="row">
         <section class="span3">
           <ul class="nav nav-tabs nav-stacked">
+            <li><a href="#install">Install</a></li>
             <li><a href="#demo">Demo it</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#extend">Extending</a></li>
@@ -27,6 +31,13 @@
             | <a href="http://twitter.com/yourwebsitesux">Adam Kochanowicz</a></p>
         </section>
         <section class="span9">
+          <h1 id="install">Install</h1>
+          <p>Just include the JS and CSS file. No markup needed.</p>
+<pre>&lt;link rel="stylesheet" href="style.css" /&gt;
+&lt;script src="main.js" /&gt;</pre>
+
+          <hr>
+
           <h1 id="demo">Demo it</h1>
           <p class="lead">Look for the black bar at the bottom of this screen.</p>
           <p>Keep in mind, these are just some demos I created in a couple minutes. <strong>Kbash is extendible.</strong>  If you can write a JavaScript function, you can extend kbash to do anything you could do in JavaScript.</p> 
@@ -67,6 +78,9 @@ Hello. It is very good to see you this fine day...you big dumb jerk.
 <pre>&gt; say --rude -v hello
 Hello. It is very good to see you this fine day...you big dumb jerk.
 </pre>  
+
+          <hr>
+
           <h1 id="about">About</h1>
           <p class="lead">Command-line JavaScript</p>
           <p>Kbash is the command-line tool in the future Kickstrap 2.0. However, it can be used with jQuery alone.</p>
@@ -83,6 +97,9 @@ Hello. It is very good to see you this fine day...you big dumb jerk.
 }</pre>
           <p>...and gets passed to the <code>kbash.say()</code> function, thus displaying this:</p>
 <pre>Hello. It is very good to see you this fine day...my good sir/madaam...you big dumb jerk.</pre>
+
+          <hr>
+
           <h1 id="extend">Extending</h1>
           <p>And here is all the developer needed to write to extend the shell.</p>
 <pre class="prettyprint">kbash.say = function(args, flags, opts, props) {
@@ -99,6 +116,9 @@ Hello. It is very good to see you this fine day...you big dumb jerk.
   }
 }</pre>
           <p><strong>Why is this good?</strong> At the end of the day, commands are routed to plain old JavaScript. This means you can build all kinds of awesome CLI tools that do pretty much anything you can do with JavaScript.</p>
+
+          <hr>
+
           <h1>Other Options</h1>
           <h3>History</h3>
           <p>Like a real unix shell, each command is stored in an array and can be retrieved by hitting the up or down arrow keys.</p>
