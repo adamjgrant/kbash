@@ -78,11 +78,11 @@ var nav = $('footer.debug nav')
 
 $(nav).click(function() {
   $(input).focus()
-  $(span).html('&#9608;')
+  cursorSpot == 0 ? cursorSwitch(1) : cursorSwitch(2)
   $(mainConsole).fadeIn('fast')
 });
 $(input).on('blur', function() {
-  $(span).html('&#9617;')
+  cursorSwitch(0)
   if (!mouseIn) $(mainConsole).fadeOut('fast')
 })
 
@@ -103,6 +103,8 @@ $(input).keyup(function(e) {
       if ($(input).val().length > 0) {
         setCommandArray( $(input).val() )
         commandSpot = 0
+        cursorSpot = 0
+        $(fakeInputLast).html('')
       }
     }
 });
@@ -123,21 +125,42 @@ $(input).keydown(function(e) {
     e.preventDefault();
     $('a').focus();
   }
-  if (e.keyCode == 37) {
+  if (e.keyCode == 37) { // Left arrow
     if ( cursorSpot > -$(input).val().length ) { 
+      cursorSwitch(2)
       cursorSpot--
       $(fakeInput).html(($(input).val().substr(0, $(input).val().length + cursorSpot)))
       $(fakeInputLast).html(($(input).val().substr($(input).val().length + cursorSpot, $(input).val().length)))
     }
   }
-  if (e.keyCode == 39) {
+  if (e.keyCode == 39) { // Right arrow
     if ( cursorSpot < 0 ) { 
+      cursorSwitch(2)
       cursorSpot++
       $(fakeInput).html(($(input).val().substr(0, $(input).val().length + cursorSpot)))
       $(fakeInputLast).html(($(input).val().substr($(input).val().length + cursorSpot, $(input).val().length)))
     }
+    if (cursorSpot == 0) {
+      cursorSwitch(1)
+    }
   }
 });
+
+function cursorSwitch(type) {
+  switch(type) {
+    case 0:
+    $(span).html('&#9617;').removeClass('skinny') // Inactive
+    break;
+
+    case 1:
+    $(span).html('&#9608;').removeClass('skinny') // Active
+    break;
+
+    case 2:
+    $(span).html('&#8739;').addClass('skinny') // Active + backediting
+    break;
+  }
+}
 
 // GETTERS
 // =======
@@ -284,6 +307,10 @@ kbash.math = function(args, flags, opts, props) {
       console.kbash('(' + e + ')');
     }
   }
+}
+kbash.exit = function() {
+  console.kbash('Goodbye')
+  $(nav).fadeOut('slow')
 }
 kbash.edit = function() {
   document.body.contentEditable='true'; document.designMode='on'; void 0;

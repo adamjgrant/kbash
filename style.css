@@ -35,6 +35,10 @@ footer.debug span.cursor {
   animation: blink 1.5s infinite linear;
   -webkit-animation: blink 1.5s infinite linear;
 }
+footer.debug span.cursor.skinny { 
+  margin-left: -4px;
+  margin-right: -4px; 
+}
 footer.debug nav {
   transition: 0.2s all;
   padding: 0 5px;
