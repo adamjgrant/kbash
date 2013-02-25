@@ -2,7 +2,7 @@
 // =========
 
 var cursorSpot = 0,
-  commandArray = ['help']
+  , commandArray = (typeof localStorage['commandArray'] == 'string') ? JSON.parse(localStorage['commandArray']) : ['help']
   , commandSpot = 0
   , mouseIn = false
   , kbash = new Object()
@@ -212,6 +212,7 @@ Array.prototype.remove = function(from, to) {
         setRequest(item)
         $(input).val('')
         setCursor()
+        localStorage.setItem('commandArray', JSON.stringify(commandArray))
       }
       console.kbash = function (string) {
          $(mainConsole).append('<p>' + string +'</p>').scrollTop($(mainConsole)[0].scrollHeight)
@@ -226,6 +227,11 @@ Array.prototype.remove = function(from, to) {
          // TODO: Parse for flags, commands, arguments and options.
          getResponse(request);
       }
+      
+      // COLORATION
+
+      kbash.e = function(string) { return '<span class="red">' + string + '</span>' }
+      kbash.s = function(string) { return '<span class="green">' + string + '</span>' }
 
       // USER HELP
 
@@ -241,6 +247,23 @@ Array.prototype.remove = function(from, to) {
         console.kbash('<span class="white">====</span>')
         msg = flags.have('v') ? 'try "say hello [-v] [--polite] [--rude]"' : 'Try "say hello" (or "help -v" for more options)'
         console.kbash(msg)
+      }
+      kbash.math = function(args, flags, opts, props) {
+        for ( var i =0; i < args.length; i++ ) {
+          try {
+            if (args[i].match(/^[-*/+0-9]+$/)) { 
+              console.kbash(args[i] + ' = <span class="white">' + parseFloat(eval(args[i])) + '</span>')
+            }
+            else { 
+              console.kbash(kbash.e('ERROR') + ' Insecure string detected') 
+              console.kbash('To prevent a script attack, this input will not be calculated.')
+            }
+          }
+          catch(e) {
+            console.kbash(kbash.e('ERROR') + ' Could not compute.')
+            console.kbash('(' + e + ')');
+          }
+        }
       }
 
 /*
