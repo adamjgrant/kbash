@@ -60,6 +60,7 @@ $('footer.debug')
 $('nav.input')
   .append('&gt;&nbsp;<span class="input"></span>')
   .append('<span class="cursor"></span>')
+  .append('<span class="input-last"></span>')
 $('span.cursor').append('&#9617;')
 
 // VARIABLES (JQ DEPENDENT)
@@ -70,13 +71,14 @@ var nav = $('footer.debug nav')
 , span = $('span.cursor')
 , mainConsole = $('nav.console')
 , fakeInput = $('span.input')
+, fakeInputLast = $('span.input-last')
 
 // NAV -> INPUT CLICK DEFERMENT
 // ============================
 
 $(nav).click(function() {
   $(input).focus()
-  $(span).html('&#9612;')
+  $(span).html('&#9608;')
   $(mainConsole).fadeIn('fast')
 });
 $(input).on('blur', function() {
@@ -94,7 +96,7 @@ $(mainConsole).hover(
 // ===========
 
 $(input).keyup(function(e) {
-    setCursor(0)
+    if (e.keyCode != 37) setCursor(0)
     // Enter key
     if( e.keyCode == 13 ) {
       e.preventDefault();
@@ -120,6 +122,20 @@ $(input).keydown(function(e) {
   if (e.keyCode == 27) { // Escape
     e.preventDefault();
     $('a').focus();
+  }
+  if (e.keyCode == 37) {
+    if ( cursorSpot > -$(input).val().length ) { 
+      cursorSpot--
+      $(fakeInput).html(($(input).val().substr(0, $(input).val().length + cursorSpot)))
+      $(fakeInputLast).html(($(input).val().substr($(input).val().length + cursorSpot, $(input).val().length)))
+    }
+  }
+  if (e.keyCode == 39) {
+    if ( cursorSpot < 0 ) { 
+      cursorSpot++
+      $(fakeInput).html(($(input).val().substr(0, $(input).val().length + cursorSpot)))
+      $(fakeInputLast).html(($(input).val().substr($(input).val().length + cursorSpot, $(input).val().length)))
+    }
   }
 });
 
@@ -212,7 +228,12 @@ console.kbash = function (string) {
 function setCursor(spot) {
   // Write in the nav
   spot = (spot || cursorSpot)  
-  $(fakeInput).html($(input).val());
+  if (cursorSpot < 0) {
+    $(fakeInput).html(($(input).val().substr(0, $(input).val().length + cursorSpot)))
+  }
+  else {
+    $(fakeInput).html($(input).val());
+  }
   // TODO: Allow the user to control cursor with arrow keys.
 }
 function setRequest(request) {
