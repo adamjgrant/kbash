@@ -16,7 +16,7 @@
   }
 }
 span.white { color: white; }
-span.green { color: green; }
+span.green { color: rgb(0, 240, 0); }
 span.red { color: red; }
 footer.debug {
   position: fixed;
