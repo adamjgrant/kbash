@@ -242,6 +242,10 @@ Array.prototype.remove = function(from, to) {
         msg = flags.have('v') ? 'try "say hello [-v] [--polite] [--rude]"' : 'Try "say hello" (or "help -v" for more options)'
         console.kbash(msg)
       }
+      kbash.exit = function(args, flags, opts, props) {
+        console.kbash('Goodbye')
+        $('footer.debug').fadeOut('slow')
+      }
 
 /*
 When people see some things as beautiful,
