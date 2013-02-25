@@ -1,7 +1,7 @@
 // VARIABLES
 // =========
 
-var cursorSpot = 0,
+var cursorSpot = 0
   , commandArray = (typeof localStorage['commandArray'] == 'string') ? JSON.parse(localStorage['commandArray']) : ['help']
   , commandSpot = 0
   , mouseIn = false
