@@ -3,6 +3,9 @@
   <head>
 	  <link rel="stylesheet" href="style.css" />
 	  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap-combined.min.css" rel="stylesheet">
+    <style>
+      hr { margin: 50px 0; }
+    </style>
 	</head>
   <body>
     <div class="container" style="padding-top: 25px">
@@ -11,11 +14,12 @@
         <h1>Kbash</h1>
         <p class="lead">The extendible Unix shell for the web</p>
         <a href="https://github.com/ajkochanowicz/kbash" class="btn btn-primary btn-large">On Github</a>
-        <a class="btn">Download</a>
+        <a href="https://s3.amazonaws.com/kickstrap/kbash.zip" class="btn btn-large">Download</a>
       </div>
       <div class="row">
         <section class="span3">
           <ul class="nav nav-tabs nav-stacked">
+            <li><a href="#install">Install</a></li>
             <li><a href="#demo">Demo it</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#extend">Extending</a></li>
@@ -27,10 +31,27 @@
             | <a href="http://twitter.com/yourwebsitesux">Adam Kochanowicz</a></p>
         </section>
         <section class="span9">
+          <h1 id="install">Install</h1>
+          <p>Just include the JS and CSS file. No markup needed.</p>
+<pre>&lt;link rel="stylesheet" href="style.css" /&gt;
+&lt;script src="main.js" /&gt;</pre>
+
+          <hr>
+
           <h1 id="demo">Demo it</h1>
           <p class="lead">Look for the black bar at the bottom of this screen.</p>
+          <p>Try out these commands</p>
+<pre>say hello</pre>
+<pre>say hello -v --polite</pre>
+<pre>colorme magenta</pre>
+<pre>colorme white</pre>
+<pre>color orange</pre>
+<pre>color red white blue</pre>
+<pre>color #f00 -rvl</pre>
+<pre>color lavender --triad -h</pre>
           <p>Keep in mind, these are just some demos I created in a couple minutes. <strong>Kbash is extendible.</strong>  If you can write a JavaScript function, you can extend kbash to do anything you could do in JavaScript.</p> 
           <p>(<a href="#extend">See Extending to learn more</a>)</p>
+
           <h3>Color Me</h3>
           <img style="margin: 15px auto; width: 381px; display: block;" src="img/colorme.png">
           <p>While kbash extensions can be as complex as any JS library could be, colorme is shows how basic they can be. At one line of code, Color Me lets you change the background of this page with a simple syntax.</p>
@@ -47,6 +68,58 @@
   <em>&lt;script src="extensions/colorme.js"&gt;&lt;/script&gt;</em>
 &lt;/body>
 </pre>
+          <h3>Color</h3>
+          <p class="lead">Convert colors and generate schemes</p>
+          <p>The <code>color</code> command allows you to seamlessly move between plain english color names and hex, hsl, hsv, and rgb.</p>
+<pre>&gt; color red -h
+red
+hex: #f00</pre>
+          <p>Can output multiple colors/formats as well.</p>
+<pre>&gt; color red green -hrv
+red
+hex: #f00
+rgb: rgb(255, 0, 0)
+hsv: hsv(0, 100%, 100%)
+ 
+green
+hex: #008000
+rgb: rgb(0, 128, 0)
+hsv: hsv(120, 100%, 50%)</pre>
+          <p>Generate schemes from any color. For example, split complement:</p>
+<pre>&gt; color lavender --split
+ 
+lavender
+hsl(240, 67%, 94%)
+ 
+hsl(240, 67%, 94%)
+ 
+hsl(96, 67%, 94%)
+ 
+hsl(96, 67%, 94%)</pre>
+          <h4>Flags</h4>
+          <dl class="dl-horizontal">
+            <dt><code>-h</code></dt>
+            <dd>display hex</dd>
+            <dt><code>-r</code></dt>
+            <dd>display rgb</dd>
+            <dt><code>-l</code></dt>
+            <dd>display hsl</dd>
+            <dt><code>-v</code></dt>
+            <dd>display hsv</dd>
+          </dl>
+          <h4>Options</h4>
+          <dl class="dl-horizontal">
+            <dt><code>--split</code></dt>
+            <dd>Generate split complement</dd>
+            <dt><code>--tetrad</code></dt>
+            <dd>Generate tetrad</dd>
+            <dt><code>--triad</code></dt>
+            <dd>Generate triad</dd>
+            <dt><code>--mono</code></dt>
+            <dd>Generate monochromatic scheme</dd>
+            <dt><code>--analog</code></dt>
+            <dd>Generate analogous scheme</dd>
+          </dl>
           <h3>Say</h3>
           <img style="margin: 15px auto; width: 500px; display: block;" src="img/say.png">
           <p class="lead">Test kbash's organization of flags, options, and arguments.</p>
@@ -67,6 +140,9 @@ Hello. It is very good to see you this fine day...you big dumb jerk.
 <pre>&gt; say --rude -v hello
 Hello. It is very good to see you this fine day...you big dumb jerk.
 </pre>  
+
+          <hr>
+
           <h1 id="about">About</h1>
           <p class="lead">Command-line JavaScript</p>
           <p>Kbash is the command-line tool in the future Kickstrap 2.0. However, it can be used with jQuery alone.</p>
@@ -83,6 +159,9 @@ Hello. It is very good to see you this fine day...you big dumb jerk.
 }</pre>
           <p>...and gets passed to the <code>kbash.say()</code> function, thus displaying this:</p>
 <pre>Hello. It is very good to see you this fine day...my good sir/madaam...you big dumb jerk.</pre>
+
+          <hr>
+
           <h1 id="extend">Extending</h1>
           <p>And here is all the developer needed to write to extend the shell.</p>
 <pre class="prettyprint">kbash.say = function(args, flags, opts, props) {
@@ -99,6 +178,9 @@ Hello. It is very good to see you this fine day...you big dumb jerk.
   }
 }</pre>
           <p><strong>Why is this good?</strong> At the end of the day, commands are routed to plain old JavaScript. This means you can build all kinds of awesome CLI tools that do pretty much anything you can do with JavaScript.</p>
+
+          <hr>
+
           <h1>Other Options</h1>
           <h3>History</h3>
           <p>Like a real unix shell, each command is stored in an array and can be retrieved by hitting the up or down arrow keys.</p>
@@ -118,6 +200,7 @@ Hello. It is very good to see you this fine day...you big dumb jerk.
     	<script src="extensions/say.js"></script>
     	<script src="extensions/colorme.js"></script>
       <script src="extensions/tecate.js"></script>
+      <script src="extensions/colorschemer/colorschemer.js"></script>
     </div>
   </body>
 </html>
