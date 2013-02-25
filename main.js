@@ -230,17 +230,23 @@ Array.prototype.remove = function(from, to) {
       // USER HELP
 
       kbash.help = function(args, flags, opts, props) {
-        var objs = Object.getOwnPropertyNames(kbash)
-        console.kbash('<span class="white">AVAILABLE COMMANDS</span>')
-        console.kbash('<span class="white">==================</span>')
-        for (var i = 0; i < objs.length; i++ ) {
-          console.kbash(objs[i])
+        try {
+          var objs = Object.getOwnPropertyNames(kbash)
+          console.kbash('<span class="white">AVAILABLE COMMANDS</span>')
+          console.kbash('<span class="white">==================</span>')
+          for (var i = 0; i < objs.length; i++ ) {
+            console.kbash(objs[i])
+          }
+          console.kbash('&nbsp;')
+          console.kbash('<span class="white">DEMO</span>')
+          console.kbash('<span class="white">====</span>')
+          msg = flags.have('v') ? 'try "say hello [-v] [--polite] [--rude]"' : 'Try "say hello" (or "help -v" for more options)'
+          console.kbash(msg)
         }
-        console.kbash('&nbsp;')
-        console.kbash('<span class="white">DEMO</span>')
-        console.kbash('<span class="white">====</span>')
-        msg = flags.have('v') ? 'try "say hello [-v] [--polite] [--rude]"' : 'Try "say hello" (or "help -v" for more options)'
-        console.kbash(msg)
+        catch(e) {
+          console.kbash('Could not retrieve commands in this browser.')
+          console.kbash('<span class="red">ERROR:</span> ' + e)          
+        }
       }
       kbash.exit = function(args, flags, opts, props) {
         console.kbash('Goodbye')
