@@ -1,0 +1,22 @@
+{
+  "debug": false,
+  "defaultLayout": "layout",
+  "defaultPort": null,
+  "defaultTemplate": null,
+  "description": "Your project description",
+  "hostName": null,
+  "lintScripts": false,
+  "optimiseImages": false,
+  "project": "Your project name",
+  "rootAssets": "public",
+  "rootIncludes": "views/includes",
+  "rootLayouts": "views/layouts",
+  "rootViews": "views",
+  "scriptOutput": null,
+  "styleOutput": null,
+  "type": "mixture",
+  "urlid": null,
+  "useCompass": false,
+  "username": null,
+  "version": "1.0.0.0"
+}

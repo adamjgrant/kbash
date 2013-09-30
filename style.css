@@ -1,4 +1,4 @@
-@-webkit-keyframes blink {
+@keyframes blink {
   0% {
     color: black;
   }
@@ -15,9 +15,15 @@
     color: black;
   }
 }
-span.white { color: white; }
-span.green { color: rgb(0, 240, 0); }
-span.red { color: red; }
+span.white {
+  color: white;
+}
+span.red {
+  color: #9b0000;
+}
+span.green {
+  color: #00f000;
+}
 footer.debug {
   position: fixed;
   bottom: 0;
@@ -33,11 +39,10 @@ footer.debug input {
 }
 footer.debug span.cursor {
   animation: blink 1.5s infinite linear;
-  -webkit-animation: blink 1.5s infinite linear;
 }
-footer.debug span.cursor.skinny { 
+footer.debug span.cursor.skinny {
   margin-left: -4px;
-  margin-right: -4px; 
+  margin-right: -4px;
 }
 footer.debug nav {
   transition: 0.2s all;
